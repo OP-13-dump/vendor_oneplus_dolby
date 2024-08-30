@@ -67,3 +67,6 @@ PRODUCT_PACKAGES += \
     libswdap \
     libswgamedap \
     libswvqe
+
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+     $(DOLBY_PATH)/vintf/device_framework_matrix.xml
