@@ -39,7 +39,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # DolbyManager
 PRODUCT_PACKAGES += \
-    OplusDolby
+    DolbyAtmos
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
