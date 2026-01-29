@@ -35,7 +35,13 @@ PRODUCT_COPY_FILES += \
 
 # Dolby
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1
+    ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1 \
+    ro.audio.spatializer_enabled=true \
+    ro.vendor.audio.dolby.dax.support=true \
+    ro.vendor.audio.dolby.surround.enable=true \
+    ro.audio.spatializer_transaural_enabled_default=false \
+    vendor.audio.dolby.ds2.enabled=false \
+    vendor.audio.dolby.ds2.hardbypass=false
 
 # DolbyManager
 PRODUCT_PACKAGES += \
@@ -63,10 +69,12 @@ PRODUCT_PACKAGES += \
     libdeccfg \
     libdlbdsservice \
     libdlbpreg \
+    libspatializerparamstorage \
     libdlbvol \
     libswdap \
     libswgamedap \
-    libswvqe
+    libswspatializer \
+    libswvqe 
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
      $(DOLBY_PATH)/vintf/device_framework_matrix.xml
