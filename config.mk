@@ -45,7 +45,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # DolbyManager
 PRODUCT_PACKAGES += \
-    DolbyAtmos
+    LunarisDolby
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
