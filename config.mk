@@ -74,7 +74,29 @@ PRODUCT_PACKAGES += \
     libswdap \
     libswgamedap \
     libswspatializer \
-    libswvqe 
+    libswvqe
+
+# AIDL adapter for libswdap.so. Only the AIDL effect factory needs it, but it is
+# inert on HIDL targets so it is built unconditionally.
+PRODUCT_PACKAGES += \
+    libswdapaidl
+
+# DAP reaches its parameter store over HIDL (vendor.dolby.hardware.dms@2.0), so
+# hwservicemanager has to be on the device. base_system.mk only installs the
+# /system/bin compat symlink; without the real binary from base_system_ext.mk the
+# symlink dangles, dms-hal-2-0 exits 1 in a loop, and every DAP set_param returns
+# -ENODEV.
+PRODUCT_PACKAGES += \
+    hwservicemanager
+
+# Shipping the binary is not enough. hwservicemanager looks itself up in VINTF on
+# startup and self-disables (setting hwservicemanager.disabled=true) when
+# android.hidl.manager resolves to Transport::EMPTY. The default fragment declares
+# it with max-level="8", which this device's target-level 202404 filters out as
+# obsolete. This flag swaps in hwservicemanager_no_max.xml, which drops the
+# max-level so the interface stays visible. Must be paired with hwservicemanager in
+# PRODUCT_PACKAGES above - soong_config.mk hard-errors otherwise.
+PRODUCT_HIDL_ENABLED := true
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
      $(DOLBY_PATH)/vintf/device_framework_matrix.xml
