@@ -27,7 +27,6 @@ cc_library_shared {
 
     srcs: [
         "DolbyDapEffect.cpp",
-        ":effectCommonFile",
     ],
 
     local_include_dirs: ["."],
